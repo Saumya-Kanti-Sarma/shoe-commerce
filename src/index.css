@@ -99,7 +99,10 @@ a:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 90%;
+  gap: 30px;
+  margin: 0 auto;
+  max-width: 400px;
 }
 
 .buy-btn {
@@ -107,6 +110,7 @@ a:hover {
   border: none;
   padding: 10px;
   border-radius: 4px;
+  flex: 1;
 }
 
 .cart-btn {

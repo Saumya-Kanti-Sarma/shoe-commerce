@@ -1,7 +1,7 @@
 import "./CSS/Product.css"
 import { useNavigate } from "react-router-dom";
 
-export default function Product({ id, image, name, description, rating, numberOfRating }) {
+export default function Product({ id, image, name, price, description, rating, numberOfRating }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -29,6 +29,7 @@ export default function Product({ id, image, name, description, rating, numberOf
       <img src={image} alt={name} className="product-image" />
       <h3 className="product-name">{name}</h3>
       <p className="product-description">{description}</p>
+      <p style={{ margin: "none" }}>₹{price}</p>
       <p className="product-rating">{generateStars(rating)} <i>({numberOfRating})</i></p>
       <div className="btn-div-card">
         <button className="buy-btn" >BUY NOW</button>

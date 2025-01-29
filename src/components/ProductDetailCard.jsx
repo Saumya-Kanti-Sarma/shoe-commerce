@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./CSS/ProductDetailCard.css";
 import { products } from "../data";
 import Product from "../components/Product.jsx";
-
+import SkeletonLoader from "../components/loaders/HomeSkekleton.jsx";
+import LoadingSpinner from "../components/loaders/LoadingSpinner.jsx";
 export default function ProductDetailCard({ product }) {
 
   const [large, setLarge] = useState("none");
-  const [productListLength, setProductListLength] = useState(3);
+  const [ratingSpinnerDisplay, setratingSpinnerDisplay] = useState("none");
+  const [productSpinnerDisplay, setProductSpinnerDisplay] = useState("none");
+  const [productListLength, setProductListLength] = useState(4);
   const [reviewIndex, setReviewIndex] = useState(3);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 2000); // Simulating a network request
+  }, []);
   const generateStars = (rating) => {
     const fullStars = Math.floor(rating);
     const halfStar = rating % 1 !== 0;
@@ -41,13 +49,14 @@ export default function ProductDetailCard({ product }) {
             <div className="product-detail-rating">
               <span style={{ color: "#FFD700" }}>
                 Rating: {generateStars(product.rating)}
+                <p style={{ color: "#fff" }}>₹{product.price}</p>
               </span>
             </div>
           </div>
-          <div className="btn-div-card">
-            <button className="buy-btn" >BUY NOW</button>
-            <button className="cart-btn"><img src="/cart.svg" /></button>
-          </div>
+        </div>
+        <div className="btn-div-card">
+          <button className="buy-btn" >BUY NOW</button>
+          <button className="cart-btn"><img src="/cart.svg" /></button>
         </div>
 
         {/* Separate div for reviews */}
@@ -73,33 +82,69 @@ export default function ProductDetailCard({ product }) {
             </div>
           ))}
         </div>
-        <button onClick={() => {
-          reviewIndex == product.ratingsData ? setReviewIndex(product.ratingsData) : setReviewIndex(reviewIndex + 3);
-        }} className="load-more">Load more...</button>
+        <LoadingSpinner display={ratingSpinnerDisplay}></LoadingSpinner>
+
+        <button
+          onClick={() => {
+            setratingSpinnerDisplay("");
+            setTimeout(() => {
+              reviewIndex == product.ratingsData.length ? setReviewIndex(product.ratingsData) : setReviewIndex(reviewIndex + 3);
+              setratingSpinnerDisplay("none");
+              console.log(product.ratingsData.length);
+
+            }, 1200);
+          }}
+          style={{ display: reviewIndex >= product.ratingsData.length ? "none" : "" }}
+          className="load-more">
+          Load more...
+        </button>
+
         <hr />
         <h3>Check Similar Products:</h3>
         <div className="product-grid-details">
-          {products.slice(0, productListLength).map((item) => (
-            <Product
-              key={item.id}
-              id={item.id}
-              image={'/' + item.image}
-              name={item.name}
-              description={item.description}
-              rating={item.rating}
-              numberOfRating={item.ratingsData.length}
-            />
-          ))}
+          {loading
+            ? Array(6).fill().map((_, i) => <SkeletonLoader key={i} />)
+            : products.slice(0, productListLength).map((product) => (
+              <Product
+                key={product.id}
+                id={product.id}
+                image={'/' + product.image}
+                name={product.name}
+                description={product.description}
+                rating={product.rating}
+                price={`${product.price}`}
+                numberOfRating={product.ratingsData.length}
+              />
+            ))}
         </div>
-        <button onClick={() => {
-          productListLength == product.length ? setProductListLength(product.length) : setProductListLength(productListLength + 3);
-        }} className="load-more">Load more...</button>
+
+        <LoadingSpinner display={productSpinnerDisplay}></LoadingSpinner>
+        <button
+          onClick={() => {
+            setProductSpinnerDisplay(""); // Show loading spinner
+            setTimeout(() => {
+              setProductListLength((prev) => {
+                const newLength = prev + 3;
+                return newLength >= products.length ? products.length : newLength;
+              });
+              setProductSpinnerDisplay("none"); // Hide spinner
+            }, 800);
+          }}
+          className="load-more"
+          style={{ display: productListLength >= products.length ? "none" : "" }} // Use `products.length`
+        >
+          Load more...
+        </button>
         <div className="image-largen"
           style={{ display: large }}
           onClick={largenImg}
         >
           <img src={"/" + product.image} />
         </div>
+        <br />
+        <br />
+        <br />
+        <hr />
       </div>
     </>
   );
