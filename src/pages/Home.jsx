@@ -3,6 +3,7 @@ import Product from "../components/Product";
 import SkeletonLoader from "../components/loaders/HomeSkekleton.jsx";
 import "./CSS/Home.css";
 import { products } from "../data";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -16,6 +17,7 @@ export default function Home() {
       <div className="hero">
         <h1>Welcome to ShoeCommerce</h1>
         <p>Your one-stop shop for the latest shoes!</p>
+        <Link to={"/about"} className="about-us-btn">ABOUT US</Link>
       </div>
       <div className="container">
         <h2>Featured Products</h2>

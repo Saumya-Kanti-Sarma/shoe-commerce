@@ -9,7 +9,7 @@ export default function ProductDetail() {
 
   if (!product) {
     return <h2>Product not found!</h2>;
-  }
+  };
 
   return (
     <div className="product-detail-page">

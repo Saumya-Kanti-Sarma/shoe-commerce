@@ -11,7 +11,8 @@ export const products = [
         star: 4,
         name: "John Doe",
         review: "Very comfortable, but could use better durability."
-      }, {
+      },
+      {
         star: 5,
         name: "Rachel Green",
         review: "Absolutely love these for my morning runs. Great support!"
@@ -75,6 +76,11 @@ export const products = [
         star: 5,
         name: "Mike Lee",
         review: "Super comfy and stylish. Wear them every day!"
+      },
+      {
+        star: 4,
+        name: "Daniel Park",
+        review: "Great running shoes, but the cushioning could be better."
       }
     ]
   },
@@ -90,6 +96,15 @@ export const products = [
         star: 4,
         name: "Daniel Park",
         review: "Great running shoes, but the cushioning could be better."
+      }, {
+        star: 4,
+        name: "Sara Smith",
+        review: "Great shoes for work, but the fit is a bit tight."
+      },
+      {
+        star: 5,
+        name: "Jane Doe",
+        review: "Love the style and comfort. Perfect for office wear!"
       }
     ]
   },
@@ -120,6 +135,15 @@ export const products = [
         star: 4,
         name: "Ross Geller",
         review: "Stylish and comfortable for daily wear, but the sole wears out quickly."
+      }, {
+        star: 4,
+        name: "Daniel Park",
+        review: "Great running shoes, but the cushioning could be better."
+      },
+      {
+        star: 5,
+        name: "Jane Doe",
+        review: "Love the style and comfort. Perfect for office wear!"
       }
     ]
   },
@@ -135,6 +159,19 @@ export const products = [
         star: 4,
         name: "Chandler Bing",
         review: "Good for everyday use, though not ideal for walking long distances."
+      }, {
+        star: 4,
+        name: "Ross Geller",
+        review: "Stylish and comfortable for daily wear, but the sole wears out quickly."
+      }, {
+        star: 4,
+        name: "Daniel Park",
+        review: "Great running shoes, but the cushioning could be better."
+      },
+      {
+        star: 5,
+        name: "Jane Doe",
+        review: "Love the style and comfort. Perfect for office wear!"
       }
     ]
   },
@@ -150,6 +187,15 @@ export const products = [
         star: 5,
         name: "Rachel Green",
         review: "Absolutely love these for my morning runs. Great support!"
+      }, {
+        star: 4,
+        name: "Ross Geller",
+        review: "Stylish and comfortable for daily wear, but the sole wears out quickly."
+      },
+      {
+        star: 5,
+        name: "Jane Doe",
+        review: "Love the style and comfort. Perfect for office wear!"
       }
     ]
   },

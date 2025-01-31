@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./CSS/ProductDetailCard.css";
 import { products } from "../data";
 import Product from "../components/Product.jsx";
 import SkeletonLoader from "../components/loaders/HomeSkekleton.jsx";
 import LoadingSpinner from "../components/loaders/LoadingSpinner.jsx";
+import toast from "react-hot-toast";
+import { CartContext } from "../context/CartContext.jsx";
 export default function ProductDetailCard({ product }) {
 
   const [large, setLarge] = useState("none");
@@ -13,6 +15,7 @@ export default function ProductDetailCard({ product }) {
   const [reviewIndex, setReviewIndex] = useState(3);
   const [loading, setLoading] = useState(true);
 
+  const { addToCart, setSelectedProduct } = useContext(CartContext);
   useEffect(() => {
     setTimeout(() => setLoading(false), 2000); // Simulating a network request
   }, []);
@@ -33,7 +36,19 @@ export default function ProductDetailCard({ product }) {
   };
   const largenImg = () => {
     large == "none" ? setLarge("") : setLarge("none");
-  }
+  };
+
+  const handleAddToCart = (e) => {
+    const id = toast.loading("Adding into cart...");
+    e.stopPropagation();
+    setTimeout(() => {
+      toast.dismiss(id);
+      toast.success("Item added...")
+      addToCart({ id: product.id, image: product.image, name: product.name, price: product.price });
+      // console.log(product);
+
+    }, 400);
+  };
   return (
     <>
       <div className="overflow-allowed">
@@ -56,7 +71,7 @@ export default function ProductDetailCard({ product }) {
         </div>
         <div className="btn-div-card">
           <button className="buy-btn" >BUY NOW</button>
-          <button className="cart-btn"><img src="/cart.svg" /></button>
+          <button className="cart-btn" onClick={handleAddToCart}><img src="/cart.svg" /></button>
         </div>
 
         {/* Separate div for reviews */}

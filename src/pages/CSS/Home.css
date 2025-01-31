@@ -2,6 +2,15 @@
   padding: 20px;
 }
 
+.about-us-btn {
+  color: rgb(255, 255, 255);
+  background-color: #003d83;
+  padding: 10px;
+  border-radius: 12px;
+  width: 70%;
+  height: 20px;
+}
+
 .hero {
   background-color: var(--dark-green);
   padding: 50px 20px;

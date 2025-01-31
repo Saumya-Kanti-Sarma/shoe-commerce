@@ -129,6 +129,8 @@
 .image-largen {
   position: absolute;
   top: 0;
+
+  width: 100vw;
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -140,7 +142,10 @@
 
 .image-largen img {
   width: 90%;
+  max-height: 80vh;
   border-radius: 8px;
+  object-fit: contain;
+  border-radius: 12px;
 }
 
 @media (max-width: 400px) {
