@@ -9,7 +9,7 @@ ShoeCommerce is a frontend e-commerce project built by me! **Saumya Kanti Sarma*
 
 1️⃣ Clone the repository:  
 ```bash
-git clone https://github.com/Saumya-Kanti-Sarma/shoecommerce.git
+git clone https://github.com/Saumya-Kanti-Sarma/shoe-commerce.git
 ```
 
 2️⃣ Install dependencies:  
